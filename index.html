@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,7 +16,7 @@
 
         <header>
             <div class="image-container">
-                <img src="public/images/headerimg.png" alt="Burger Image" />
+                <img src="/images/headerimg.png" alt="Burger Image" />
                 <div class="img-text">
                     <h3>Jimmy's Diner</h3>
                     <p class="small-text">The best burgers and pizzas in town.</p>
@@ -30,45 +29,39 @@
         <main>
             
             <section id="menu-list"></section>
-
             <section>
-                <div class="order-complete-container">
-                    <h2 class="order-complete-title">Thanks, James! Your order is on its way!</h2>
-                </div>
-            </section>
-
-            <section>
-                                <div class="checkout-section">
-                    <h2 class="checkout-title">Your Order</h2>
-                        <div class="order-items">
-                            <p class="order-item">Pizza</p>
-                            <button class="remove-button">Remove</button>
-                            <p>$14</p>
+                    <div class="checkout-section" id="order-box">
+                        <h2 class="checkout-title">Your Order</h2>
+                    <div id="order-details">
+                        <div class="total-price">
+                            <p>Total price:</p>
+                            <p class="price">$0</p>
                         </div>
-                            <div class="total-price">
-                                <p>Total price:</p>
-                                <p class="price">$14</p>
-                            </div>
-                            <button class="purchase-button">Complete Order</button>
-                        </div>
+                    </div>
+                    <button class="purchase-button" id="checkout-box">Complete Order</button>
                     </div>
             </section>
 
             <section>
-                <div class="payment-container">
-                    <form class="payment-form">
-                        <h2 class="payment-title">Enter card details</h2>
-                            <div class="input-group">
-                                <input type="text" placeholder="Enter your name" required />
-                                <input type="number" placeholder="Enter card number" required />
-                                <input type="number" placeholder="Enter CVV" required />
-                            </div>
-                        <button class="pay-button" type="submit">Pay</button>
-                    </form>
-                </div>
+                <div class="payment-container hidden" id="cc-box">
+            <form class="payment-form">
+                <h2 class="payment-title">Enter card details</h2>
+                    <div class="input-group">
+                        <input type="text" placeholder="Enter your name" required />
+                        <input type="number" placeholder="Enter card number" required />
+                        <input type="number" placeholder="Enter CVV" required />
+                    </div>
+                <button class="pay-button" type="submit" id="pay-btn">Pay</button>
+            </form>
+        </div>
             </section>
 
 
+        <section>
+            <div class="order-complete-container hidden" id="order-complete-box">
+                <h2 class="order-complete-title">Thanks, James! Your order is on its way!</h2>
+            </div>
+        </section>
 
         </main>
 
