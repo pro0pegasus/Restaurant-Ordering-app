@@ -157,7 +157,7 @@ function render () {
         html += `
         <div class="container">
             <div class="item-list">                        
-                <img src="public/images/${array.image}" alt="${array.name} image"/>
+                <img src="/images/${array.image}" alt="${array.name} image"/>
                 <div class="item-text">
                     <h2>${array.name}</h2>
                     <p class="item-description">${array.ingredients.join(', ')}</p>
