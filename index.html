@@ -48,8 +48,8 @@
                 <h2 class="payment-title">Enter card details</h2>
                     <div class="input-group">
                         <input type="text" placeholder="Enter your name" required />
-                        <input type="number" placeholder="Enter card number" required />
-                        <input type="number" placeholder="Enter CVV" required />
+                        <input type="text" maxlength="16" pattern="[0-9]{16}"  placeholder="Enter card number" required />
+                        <input type="text" maxlength="3" pattern="[0-9]{3}" placeholder="Enter CVV" required />
                     </div>
                 <button class="pay-button" type="submit" id="pay-btn">Pay</button>
             </form>

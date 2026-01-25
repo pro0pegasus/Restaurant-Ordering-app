@@ -4,8 +4,13 @@ const orderBtn = document.getElementById('checkout-box')
 const payBtn = document.getElementById('pay-btn')
 
 orderBtn.addEventListener('click', function(){
+    if(cart.length === 0){
+        return
+    } else{ // Prevent checkout if cart is empty
         document.getElementById(`cc-box`).classList.toggle('hidden')
+        orderBtn.disabled = true; // Disable the button after first click
         renderCart()
+    }
 })
 
 // Handle payment form submission (prevents page reload)
@@ -51,11 +56,11 @@ function addToCart(id){
     // we should find the the item price, from the object then calculate the totalprice. passe the results in renderCart function
     
     const getPrice = menuArray.find(function(item){
-            return item.id === id       
+        return item.id === id       
     })
     
     const existingItem = cart.find(function(item){
-            return item.id === id      
+        return item.id === id      
     })
     
     if (existingItem) {
@@ -65,15 +70,6 @@ function addToCart(id){
     } 
 }
 
-
-// function addToCart(id){
-//   const numericId = Number(id);
-//   const item = menuArray.find(i => i.id === numericId);
-//   if (!item) { console.warn('item not found', id); return; }
-//   const existing = cart.find(c => c.id === numericId);
-//   if (existing) existing.qty++;
-//   else cart.push({...item, qty: 1});
-// }
 
 function removeFromCart(id) {
     const item = cart.find(function(itemId){
@@ -118,27 +114,29 @@ function removeFromCart(id) {
 
 function renderCart() {
     let cartToFeed = ``
-    let totalPrice = 0
+    // let totalPrice = 0
     
-    // cartToFeed += `<h2 class="checkout-title">Your Order</h2>`
+    let totalPrice = cart.reduce(function(total, item) {
+    return total + item.price * item.quantity
+}, 0)
 
     cart.forEach(function(item) {
         // rewrite it with .reduce() later
         const itemTotal = item.price * item.quantity
-        totalPrice += itemTotal
+        // totalPrice += itemTotal
 
         cartToFeed += `
             <div class="order-items">
                 <p class="order-item">${item.name} 
-                <span class="qtty">x${item.quantity}</span></p>
-                <span class="spn-remove-btn">
+                    <span class="qtty">x${item.quantity}</span>
+                    <span>
                     <button class="remove-button" data-remove="${item.id}">Remove</button>
-                </span>
-                <p>$${itemTotal}</p>
-            </div>
+                    </span>
+                </p>
+                <p class="item-price">$${itemTotal}</p>
+            </div>       
         `
-    })
-    
+})   
     cartToFeed += `
         <div class="total-price">
             <p>Total price:</p>
@@ -159,7 +157,7 @@ function render () {
         html += `
         <div class="container">
             <div class="item-list">                        
-                <img src="/images/${array.image}" alt="${array.name} image"/>
+                <img src="public/images/${array.image}" alt="${array.name} image"/>
                 <div class="item-text">
                     <h2>${array.name}</h2>
                     <p class="item-description">${array.ingredients.join(', ')}</p>
